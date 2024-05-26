@@ -1,5 +1,6 @@
 import './index.css';
 
+import { GlobalState, MyGlobalState } from './global_context';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import App from './App';
@@ -23,12 +24,15 @@ const router = createBrowserRouter([
     element: <Page1 />,
   },
 ]);
+const myclass = new MyGlobalState();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <RouterProvider router={router}>
-    <App />
-  </RouterProvider>
+  <GlobalState.Provider value={myclass}>
+    <RouterProvider router={router}>
+      <App />
+    </RouterProvider>
+  </GlobalState.Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
